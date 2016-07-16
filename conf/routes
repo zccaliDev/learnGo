@@ -1,0 +1,29 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+##### UserController ######
+POST        /api/users                                                  UsersController.Create
+POST        /api/login                                                  UsersController.Login
+
+#### PostController #####
+GET         /api/posts                                                  PostController.Index
+POST        /api/posts                                                  PostController.Create
+PUT         /api/posts/:id                                              PostController.Update
+DELETE      /api/posts/:id                                              PostController.Delete
+
+#### PostTrashController #####
+GET         /api/posts/trash                                                  PostTrashController.Index
+DELETE      /api/posts/trash/:id                                              PostTrashController.Delete
+PUT         /api/posts/trash/:id                                              PostTrashController.Restore
+
+#### CommentsController #####
+GET         /api/comments                                               CommentController.Index
+POST        /api/comments/:id                                           CommentController.Create
+PUT         /api/comments/:id                                           CommentController.Update
+DELETE      /api/comments/:id                                           CommentController.Delete
+
+###### LikesController ######
+GET         /api/likes/:id                                               LikesController.Index
+POST        /api/likes/:id                                           LikesController.Create
+DELETE      /api/likes/:id                                           LikesController.Delete
