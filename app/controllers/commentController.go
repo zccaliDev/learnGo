@@ -18,14 +18,17 @@ type CommentController struct {
 
 func (c CommentController) Index() revel.Result  {
 	var comments []models.Comment
+	var id int
 	var limitQuery = c.Request.URL.Query().Get("limit");
 
 	if limitQuery == "" {
 		limitQuery = "0"
 	}
+	c.Params.Bind(&id, "id");
+
 	var offsetQuery = c.Request.URL.Query().Get("offset");
 
-	if founded := app.Db.Limit(limitQuery).Offset(offsetQuery).Find(&comments).RowsAffected; founded < 1  {
+	if founded := app.Db.Limit(limitQuery).Offset(offsetQuery).Where(`"post_id" = ?`, id).Find(&comments).RowsAffected; founded < 1  {
 		return c.RenderJson(util.ResponseError("No Founded comments"))
 	}
 

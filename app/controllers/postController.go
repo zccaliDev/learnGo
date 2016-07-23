@@ -36,6 +36,20 @@ func (c PostController) Index() revel.Result  {
 
 	return c.RenderJson(posts);
 }
+func (c PostController) Find() revel.Result  {
+	var post models.Post
+	var id int;
+	c.Params.Bind(&id, "id");
+
+	if founded := app.Db.First(&post, id).RowsAffected; founded < 1  {
+		return c.RenderJson(util.ResponseError("No Founded Posts"))
+	}
+
+	app.Db.First(&post.User, post.UserID)
+	post.User.Password = ""
+
+	return c.RenderJson(post);
+}
 
 func (c PostController) Create() revel.Result {
 	var post = encoders.EncodePost(c.Request.Body);
@@ -92,4 +106,23 @@ func (c PostController) Delete() revel.Result {
 	}
 
 	return c.RenderJson(util.ResponseSuccess(post))
+}
+
+func (c PostController) Summery() revel.Result {
+	var posts []models.Post
+	if founded := app.Db.Find(&posts).RowsAffected; founded < 1  {
+		return c.RenderJson(util.ResponseError("No Founded Posts"))
+	}
+
+	for i, post := range posts {
+		app.Db.First(&posts[i].User, post.UserID)
+		posts[i].User.Password = ""
+		app.Db.Model(&models.Likes{}).Where("post_id = ?", post.ID).Count(&posts[i].Like)
+		app.Db.Model(&models.Comment{}).Where("post_id = ?", post.ID).Count(&posts[i].Comment)
+
+	}
+
+
+	return c.RenderJson(posts)
+
 }

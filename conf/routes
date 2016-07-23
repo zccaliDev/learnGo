@@ -8,6 +8,8 @@ POST        /api/login                                                  UsersCon
 
 #### PostController #####
 GET         /api/posts                                                  PostController.Index
+GET         /api/posts/summery                                          PostController.Summery
+GET         /api/posts/:id                                                PostController.Find
 POST        /api/posts                                                  PostController.Create
 PUT         /api/posts/:id                                              PostController.Update
 DELETE      /api/posts/:id                                              PostController.Delete
@@ -18,7 +20,7 @@ DELETE      /api/posts/trash/:id                                              Po
 PUT         /api/posts/trash/:id                                              PostTrashController.Restore
 
 #### CommentsController #####
-GET         /api/comments                                               CommentController.Index
+GET         /api/comments/:id                                               CommentController.Index
 POST        /api/comments/:id                                           CommentController.Create
 PUT         /api/comments/:id                                           CommentController.Update
 DELETE      /api/comments/:id                                           CommentController.Delete

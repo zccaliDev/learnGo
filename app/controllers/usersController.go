@@ -32,6 +32,9 @@ func (c UsersController) Create() revel.Result{
 func (c UsersController) Login() revel.Result {
 	var user = encoders.EncodeSingleUsers(c.Request.Body);
 
+	if user.Email == "" || user.Password == ""  {
+		return c.RenderJson(util.ResponseError("User Information is empty"));
+	}
 
 	if founded := app.Db.Where(&user).First(&user).RowsAffected; founded < 1 {
 		return c.RenderJson(util.ResponseError("User NOt Founded"));
@@ -57,6 +60,6 @@ func (c UsersController) Login() revel.Result {
 	tokenModel.Name	= user.Name
 	tokenModel.Token = tokenString
 
-	return c.RenderJson(tokenModel)
+	return c.RenderJson(util.ResponseSuccess(tokenModel))
 
 }

@@ -17,7 +17,6 @@ type LikesController struct {
 
 func (c LikesController) Index() revel.Result  {
 	var like models.Likes
-	like.UserID, _ = strconv.ParseInt(c.Session["id"], 10, 0)
 	c.Params.Bind(&like.PostID, "id")
 
 	log.Println(like);
@@ -32,7 +31,7 @@ func (c LikesController) Create() revel.Result {
 	like.UserID, _ = strconv.ParseInt(c.Session["id"], 10, 0)
 	c.Params.Bind(&like.PostID, "id")
 
-	app.Db.First(&like)
+	app.Db.Where(&like).First(&like)
 
 	if app.Db.NewRecord(&like) {
 		if err := app.Db.Create(&like).Error; err != nil {
@@ -40,8 +39,9 @@ func (c LikesController) Create() revel.Result {
 			return c.RenderJson(util.ResponseError("like Creation failed"));
 		}
 	}
-
-	return c.RenderJson(util.ResponseSuccess(like))
+	var likes int64
+	app.Db.Model(&models.Likes{}).Where(`"post_id" = ?`, like.PostID).Count(&likes)
+	return c.RenderJson(util.ResponseSuccess(likes))
 }
 
 func (c LikesController) Delete() revel.Result {
