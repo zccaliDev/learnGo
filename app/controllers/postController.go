@@ -48,6 +48,8 @@ func (c PostController) Find() revel.Result  {
 	app.Db.First(&post.User, post.UserID)
 	post.User.Password = ""
 
+	app.Db.Model(&models.Likes{}).Where("post_id = ?", post.ID).Count(&post.Like)
+	app.Db.Model(&models.Comment{}).Where("post_id = ?", post.ID).Count(&post.Comment)
 	return c.RenderJson(post);
 }
 

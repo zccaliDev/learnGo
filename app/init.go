@@ -39,7 +39,7 @@ func init() {
 
 	revel.OnAppStart(func() {
 		var err error
-		Db, err = gorm.Open("sqlite3", "./database/storage.db");
+		Db, err = gorm.Open("sqlite3", "database/storage.db");
 
 		if err != nil {
 			log.Fatal(err);
