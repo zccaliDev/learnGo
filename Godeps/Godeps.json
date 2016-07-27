@@ -1,0 +1,60 @@
+{
+	"ImportPath": "github.com/zccaliDev/learnGo",
+	"GoVersion": "go1.5",
+	"Packages": [
+		"./app/tmp"
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/agtorre/gocolorize",
+			"Comment": "v1.0.0",
+			"Rev": "f42b554bf7f006936130c9bb4f971afd2d87f671"
+		},
+		{
+			"ImportPath": "github.com/dgrijalva/jwt-go",
+			"Comment": "v3.0.0-4-g01aeca5",
+			"Rev": "01aeca54ebda6e0fbfafd0a524d234159c05ec20"
+		},
+		{
+			"ImportPath": "github.com/jinzhu/gorm",
+			"Comment": "v1.0-50-ga646b13",
+			"Rev": "a646b13548ec0aa812fe805b2780f460dd2771b6"
+		},
+		{
+			"ImportPath": "github.com/jinzhu/inflection",
+			"Rev": "3272df6c21d04180007eb3349844c89a3856bc25"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-sqlite3",
+			"Comment": "v1.1.0-42-g45f056c",
+			"Rev": "45f056ca8f5ef4ee3f68796167a0a0e6a6214813"
+		},
+		{
+			"ImportPath": "github.com/revel/modules/static/app/controllers",
+			"Comment": "v0.12.0",
+			"Rev": "3589d5bf1d1b6da10a88c53701db2af12dfc0811"
+		},
+		{
+			"ImportPath": "github.com/revel/revel",
+			"Comment": "v0.12.0-1-g83c6204",
+			"Rev": "83c62046c726f36daec7a28a335521f94b2561a6"
+		},
+		{
+			"ImportPath": "github.com/robfig/config",
+			"Rev": "0f78529c8c7e3e9a25f15876532ecbc07c7d99e6"
+		},
+		{
+			"ImportPath": "github.com/robfig/pathtree",
+			"Rev": "41257a1839e945fce74afd070e02bab2ea2c776a"
+		},
+		{
+			"ImportPath": "golang.org/x/net/websocket",
+			"Rev": "621fff363a1d9ad7fdd0bfa9d80a42881267deb4"
+		},
+		{
+			"ImportPath": "gopkg.in/fsnotify.v1",
+			"Comment": "v1.2.0",
+			"Rev": "96c060f6a6b7e0d6f75fddd10efeaca3e5d1bcb0"
+		}
+	]
+}
